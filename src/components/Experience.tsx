@@ -68,7 +68,7 @@ export default function Experience() {
         {
           title: "Semi Senior Developer",
           description:
-            "Tech lead working on multiple projects simultaneously with different clients. Stack: C#, SQL Server, ReactJS, Azure.",
+            "Worked on multiple projects across different industries: developed and maintained an adverse effects reporting system for a pharmaceutical company, built SharePoint solutions, and performed data analysis for a mining company. Stack: C#, SQL Server, ReactJS, Azure.",
         },
       ],
     },
@@ -78,7 +78,7 @@ export default function Experience() {
         {
           title: "Developer",
           description:
-            "Developed internal tools and features in dashboards for API consumption tracking. Implemented the first version of the billing and plans system.",
+            "My first experience in the startup world. Implemented Jenkins pipelines to integrate CI into the project, built the first version of the billing and plans system, and handled BAU tasks. Developed internal tools and dashboard features for API consumption tracking.",
         },
       ],
     },
