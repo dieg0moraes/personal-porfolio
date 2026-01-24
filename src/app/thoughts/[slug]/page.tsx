@@ -67,7 +67,7 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
-            $ cat thought/{thought.slug}
+            $ cat thought/{thought.slug}<span className="typing-cursor" />
           </span>
         </div>
 

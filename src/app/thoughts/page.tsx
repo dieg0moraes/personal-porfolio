@@ -25,7 +25,7 @@ export default async function ThoughtsPage() {
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
-            $ cat thoughts.log
+            $ cat thoughts.log<span className="typing-cursor" />
           </span>
 
           <h1 className="text-foreground font-bold text-3xl md:text-5xl lg:text-6xl leading-none tracking-[-1px]">

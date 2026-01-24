@@ -6,3 +6,4 @@ export { default as TechStack } from "./TechStack";
 export { default as Footer } from "./Footer";
 export { default as ThoughtCard } from "./ThoughtCard";
 export { default as ThoughtTags } from "./ThoughtTags";
+export { default as TypingText } from "./TypingText";

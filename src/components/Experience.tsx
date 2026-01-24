@@ -1,3 +1,8 @@
+"use client";
+
+import { useAnimateOnScroll } from "@/hooks/useAnimateOnScroll";
+import TypingText from "./TypingText";
+
 interface ExperienceCardProps {
   company: string;
   status?: string;
@@ -5,11 +10,18 @@ interface ExperienceCardProps {
     title: string;
     description: string;
   }[];
+  index: number;
+  isVisible: boolean;
 }
 
-function ExperienceCard({ company, status, roles }: ExperienceCardProps) {
+function ExperienceCard({ company, status, roles, index, isVisible }: ExperienceCardProps) {
   return (
-    <div className="border border-border p-6 md:p-8 flex flex-col gap-4 w-full">
+    <div
+      className={`work-card border border-border p-6 md:p-8 flex flex-col gap-4 w-full transition-all duration-600 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+      }`}
+      style={{ transitionDelay: `${300 + index * 100}ms` }}
+    >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full gap-2">
         <h3 className="text-foreground font-bold text-xl md:text-2xl">
           {company}
@@ -21,8 +33,8 @@ function ExperienceCard({ company, status, roles }: ExperienceCardProps) {
         )}
       </div>
 
-      {roles.map((role, index) => (
-        <div key={index} className="flex flex-col gap-2">
+      {roles.map((role, roleIndex) => (
+        <div key={roleIndex} className="flex flex-col gap-2">
           <p className="text-text-muted text-base md:text-lg">
             &gt; {role.title}
           </p>
@@ -36,6 +48,8 @@ function ExperienceCard({ company, status, roles }: ExperienceCardProps) {
 }
 
 export default function Experience() {
+  const { ref, isVisible } = useAnimateOnScroll<HTMLElement>({ threshold: 0.1 });
+
   const experiences = [
     {
       company: "Mercado Libre",
@@ -91,14 +105,21 @@ export default function Experience() {
   ];
 
   return (
-    <section className="bg-background py-12 md:py-20 px-6 md:px-20 flex flex-col gap-8 md:gap-10">
+    <section
+      ref={ref}
+      className="bg-background py-12 md:py-20 px-6 md:px-20 flex flex-col gap-8 md:gap-10"
+    >
       <span className="text-accent font-bold text-xs tracking-[2px]">
-        // WORK EXPERIENCE
+        {isVisible ? (
+          <TypingText text="// WORK EXPERIENCE" speed={50} showCursor={false} />
+        ) : (
+          "// WORK EXPERIENCE"
+        )}
       </span>
 
       <div className="flex flex-col gap-0.5 w-full">
-        {experiences.map((exp) => (
-          <ExperienceCard key={exp.company} {...exp} />
+        {experiences.map((exp, index) => (
+          <ExperienceCard key={exp.company} {...exp} index={index} isVisible={isVisible} />
         ))}
       </div>
     </section>
