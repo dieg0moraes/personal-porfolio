@@ -5,7 +5,7 @@ import ThoughtCard from "@/components/ThoughtCard";
 
 export const metadata: Metadata = {
   title: "Thoughts | Diego Moraes",
-  description: "Micro-posts, ideas y reflexiones sobre tecnología y desarrollo de software.",
+  description: "Micro-posts, ideas and reflections on technology and software development.",
 };
 
 export const revalidate = 60; // Revalidate every 60 seconds
@@ -21,7 +21,7 @@ export default async function ThoughtsPage() {
             href="/"
             className="text-text-muted-dark text-sm hover:text-accent transition-colors w-fit"
           >
-            ← Volver
+            ← Back
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
@@ -33,18 +33,22 @@ export default async function ThoughtsPage() {
           </h1>
 
           <p className="text-text-muted text-base md:text-lg max-w-2xl">
-            Micro-posts, ideas y reflexiones sobre tecnología, desarrollo de software y otras cosas que me interesan.
+            Micro-posts, ideas and reflections on technology, software development and other things that interest me.
           </p>
         </div>
 
         {thoughts.length === 0 ? (
           <div className="border border-border p-8 text-center">
-            <p className="text-text-muted">No hay thoughts todavía.</p>
+            <p className="text-text-muted">No thoughts yet.</p>
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            {thoughts.map((thought) => (
-              <ThoughtCard key={thought.id} {...thought} />
+            {thoughts.map((thought, index) => (
+              <ThoughtCard
+                key={thought.id}
+                {...thought}
+                number={thoughts.length - index}
+              />
             ))}
           </div>
         )}

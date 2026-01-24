@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
-import { es } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { getThoughtBySlug, getThoughts } from "@/lib/supabase/queries";
 import ThoughtTags from "@/components/ThoughtTags";
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
 
   if (!thought) {
     return {
-      title: "Thought no encontrado | Diego Moraes",
+      title: "Thought not found | Diego Moraes",
     };
   }
 
@@ -51,8 +51,8 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
     notFound();
   }
 
-  const formattedDate = format(new Date(thought.created_at), "d MMMM yyyy", {
-    locale: es,
+  const formattedDate = format(new Date(thought.created_at), "MMMM d, yyyy", {
+    locale: enUS,
   });
 
   return (
@@ -63,7 +63,7 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
             href="/thoughts"
             className="text-text-muted-dark text-sm hover:text-accent transition-colors w-fit"
           >
-            ← Volver a Thoughts
+            ← Back to Thoughts
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
@@ -72,10 +72,6 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
         </div>
 
         <header className="flex flex-col gap-4 border-b border-border pb-8">
-          <h1 className="text-foreground font-bold text-2xl md:text-4xl lg:text-5xl leading-tight">
-            {thought.title}
-          </h1>
-
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <time className="text-text-muted-dark text-sm md:text-base">
               {formattedDate}
@@ -83,17 +79,6 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
 
             <ThoughtTags tags={thought.tags} />
           </div>
-
-          {thought.x_post_id && (
-            <a
-              href={`https://x.com/i/web/status/${thought.x_post_id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent text-sm hover:underline w-fit"
-            >
-              Ver en X →
-            </a>
-          )}
         </header>
 
         <div className="prose prose-invert max-w-none">
