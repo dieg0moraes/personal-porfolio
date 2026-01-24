@@ -38,21 +38,13 @@ export async function sendTelegramMessage(
   }
 }
 
-export function formatSuccessMessage(
-  title: string,
-  slug: string,
-  xPostId: string | null
-): string {
+export function formatSuccessMessage(title: string, slug: string): string {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://techbydie.dev";
   const thoughtUrl = `${siteUrl}/thoughts/${slug}`;
 
   let message = `<b>Thought publicado</b>\n\n`;
   message += `<b>Título:</b> ${title}\n`;
   message += `<b>Link:</b> ${thoughtUrl}`;
-
-  if (xPostId) {
-    message += `\n<b>X:</b> https://x.com/i/web/status/${xPostId}`;
-  }
 
   return message;
 }

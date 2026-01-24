@@ -6,8 +6,7 @@ import {
   formatSuccessMessage,
   formatErrorMessage,
 } from "@/lib/telegram/bot";
-import { createThought, updateThoughtXPost } from "@/lib/supabase/queries";
-import { postToX } from "@/lib/twitter/client";
+import { createThought } from "@/lib/supabase/queries";
 
 export async function POST(request: NextRequest) {
   try {
@@ -55,18 +54,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
-    // Post to X
-    const xPostId = await postToX(thought.title, thought.slug, thought.tags);
-
-    // Update thought with X post ID if successful
-    if (xPostId) {
-      await updateThoughtXPost(thought.id, xPostId);
-    }
-
     // Send success message
     await sendTelegramMessage(
       chatId,
-      formatSuccessMessage(thought.title, thought.slug, xPostId)
+      formatSuccessMessage(thought.title, thought.slug)
     );
 
     return NextResponse.json({ ok: true });

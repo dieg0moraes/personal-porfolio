@@ -75,28 +75,3 @@ export async function createThought(
   return data;
 }
 
-export async function updateThoughtXPost(
-  id: string,
-  xPostId: string
-): Promise<boolean> {
-  const supabaseAdmin = getSupabaseAdmin();
-  if (!supabaseAdmin) {
-    console.error("Supabase admin client not available");
-    return false;
-  }
-
-  const { error } = await supabaseAdmin
-    .from("thoughts")
-    .update({
-      posted_to_x: true,
-      x_post_id: xPostId,
-    })
-    .eq("id", id);
-
-  if (error) {
-    console.error("Error updating thought X post:", error);
-    return false;
-  }
-
-  return true;
-}
