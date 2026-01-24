@@ -1,4 +1,52 @@
 const TELEGRAM_API_URL = "https://api.telegram.org/bot";
+const TELEGRAM_FILE_URL = "https://api.telegram.org/file/bot";
+
+interface TelegramFile {
+  file_id: string;
+  file_unique_id: string;
+  file_size?: number;
+  file_path?: string;
+}
+
+interface GetFileResponse {
+  ok: boolean;
+  result?: TelegramFile;
+}
+
+export async function downloadTelegramPhoto(fileId: string): Promise<Buffer | null> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+
+  if (!token) {
+    console.error("Telegram bot token not configured");
+    return null;
+  }
+
+  try {
+    // Get file path from Telegram
+    const fileResponse = await fetch(`${TELEGRAM_API_URL}${token}/getFile?file_id=${fileId}`);
+    const fileData: GetFileResponse = await fileResponse.json();
+
+    if (!fileData.ok || !fileData.result?.file_path) {
+      console.error("Could not get file path from Telegram");
+      return null;
+    }
+
+    // Download the file
+    const downloadUrl = `${TELEGRAM_FILE_URL}${token}/${fileData.result.file_path}`;
+    const downloadResponse = await fetch(downloadUrl);
+
+    if (!downloadResponse.ok) {
+      console.error("Could not download file from Telegram");
+      return null;
+    }
+
+    const arrayBuffer = await downloadResponse.arrayBuffer();
+    return Buffer.from(arrayBuffer);
+  } catch (error) {
+    console.error("Error downloading Telegram photo:", error);
+    return null;
+  }
+}
 
 export async function sendTelegramMessage(
   chatId: number,

@@ -5,20 +5,21 @@ import {
   sendTelegramMessage,
   formatSuccessMessage,
   formatErrorMessage,
+  downloadTelegramPhoto,
 } from "@/lib/telegram/bot";
-import { createThought } from "@/lib/supabase/queries";
+import { createThought, uploadThoughtImage } from "@/lib/supabase/queries";
 
 export async function POST(request: NextRequest) {
   try {
     const update: TelegramUpdate = await request.json();
 
-    // Ignore non-message updates
-    if (!update.message?.text) {
+    const message = update.message;
+
+    // Ignore non-message updates or messages without text/photo
+    if (!message || (!message.text && !message.photo)) {
       return NextResponse.json({ ok: true });
     }
 
-    const message = update.message;
-    const text = message.text as string; // Already validated above
     const chatId = message.chat.id;
     const userId = message.from.id;
 
@@ -26,6 +27,17 @@ export async function POST(request: NextRequest) {
     const allowedUserId = process.env.TELEGRAM_ALLOWED_USER_ID;
     if (allowedUserId && userId.toString() !== allowedUserId) {
       console.log(`Unauthorized user: ${userId}`);
+      return NextResponse.json({ ok: true });
+    }
+
+    // Get text from either text or caption (for photos)
+    const text = message.text || message.caption;
+
+    if (!text) {
+      await sendTelegramMessage(
+        chatId,
+        formatErrorMessage("El mensaje debe incluir texto o un caption en la foto")
+      );
       return NextResponse.json({ ok: true });
     }
 
@@ -39,11 +51,39 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     }
 
+    // Handle photo if present
+    let imageUrl: string | undefined;
+    if (message.photo && message.photo.length > 0) {
+      // Get the largest photo (last in array)
+      const largestPhoto = message.photo[message.photo.length - 1];
+
+      // Download photo from Telegram
+      const photoBuffer = await downloadTelegramPhoto(largestPhoto.file_id);
+
+      if (photoBuffer) {
+        // Generate unique filename
+        const fileName = `${Date.now()}-${largestPhoto.file_unique_id}.jpg`;
+
+        // Upload to Supabase Storage
+        const uploadedUrl = await uploadThoughtImage(photoBuffer, fileName);
+
+        if (uploadedUrl) {
+          imageUrl = uploadedUrl;
+        } else {
+          await sendTelegramMessage(
+            chatId,
+            formatErrorMessage("No se pudo subir la imagen, pero se guardará el thought sin ella")
+          );
+        }
+      }
+    }
+
     // Create thought in Supabase
     const thought = await createThought({
       title: parsed.title,
       content: parsed.content,
       tags: parsed.tags,
+      image_url: imageUrl,
     });
 
     if (!thought) {

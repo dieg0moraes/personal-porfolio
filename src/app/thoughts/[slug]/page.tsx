@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
@@ -30,6 +31,9 @@ export async function generateMetadata({
       description: thought.content.substring(0, 160),
       type: "article",
       publishedTime: thought.created_at,
+      ...(thought.image_url && {
+        images: [{ url: thought.image_url }],
+      }),
     },
   };
 }
@@ -80,6 +84,19 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
             <ThoughtTags tags={thought.tags} />
           </div>
         </header>
+
+        {thought.image_url && (
+          <div className="relative w-full max-w-2xl">
+            <Image
+              src={thought.image_url}
+              alt={thought.title}
+              width={800}
+              height={600}
+              className="rounded-lg object-contain w-full h-auto"
+              priority
+            />
+          </div>
+        )}
 
         <div className="prose prose-invert max-w-none">
           <p className="text-text-light text-base md:text-lg leading-relaxed whitespace-pre-wrap">
