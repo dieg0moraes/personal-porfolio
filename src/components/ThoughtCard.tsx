@@ -18,7 +18,7 @@ export default function ThoughtCard({
   created_at,
   number,
 }: ThoughtCardProps) {
-  const formattedDate = format(new Date(created_at), "MMM d, yyyy", {
+  const formattedDate = format(new Date(created_at), "MMM d, yyyy · h:mm a", {
     locale: enUS,
   });
 
