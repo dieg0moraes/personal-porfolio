@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="bg-background py-16 md:py-[120px] px-6 md:px-20 flex flex-col gap-6 md:gap-8">
@@ -37,6 +39,12 @@ export default function Hero() {
         >
           LinkedIn →
         </a>
+        <Link
+          href="/thoughts"
+          className="px-7 py-3.5 border-2 border-border text-foreground font-bold text-sm md:text-base hover:border-text-muted transition-colors text-center"
+        >
+          Thoughts →
+        </Link>
       </div>
     </section>
   );
