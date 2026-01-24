@@ -56,19 +56,9 @@ export default function Experience() {
       status: "Current",
       roles: [
         {
-          title: "Senior Software Engineer (2024 - Present)",
+          title: "Senior Software Engineer (2021 - Present)",
           description:
-            "I thrive on solving complex challenges as a Senior Software Engineer on MercadoLibre's search engine team. We handle one of the world's most heavily used search bars, processing over 5 million queries per minute. My role involves analyzing our search applications, identifying areas for improvement, and mentoring teammates to implement optimized solutions. Our work is critical to the success of the platform, directly impacting the shopping experience for millions of users across Latin America.",
-        },
-        {
-          title: "Software Engineer (2022 - 2024)",
-          description:
-            "Long-term task estimates, development plans involving coordination of several teams. Mentor of new entries, referent in technical decisions. Implementation of new applications involving communication with different microservices and databases.",
-        },
-        {
-          title: "Software Development Analyst (2021 - 2022)",
-          description:
-            "Part of the listing management team where sellers can manage their publications across all countries. Technology stack: React, Node, Java, GraphQL. Clean architecture, cross libraries. Handling ~200k RPM across 10 auto-scaling groups. Monitoring: Kibana, New Relic, Datadog. Team of 16 developers using agile methodologies.",
+            "Currently part of the listing management team where sellers manage their publications across all countries. Previously worked on the search engine team, handling one of the world's most heavily used search bars with over 5 million queries per minute. Tech stack includes React, Node, Java, and GraphQL with clean architecture patterns. Experience working with high-traffic systems across auto-scaling groups, using monitoring tools like Kibana, New Relic, and Datadog.",
         },
       ],
     },
