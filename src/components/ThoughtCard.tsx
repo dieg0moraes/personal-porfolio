@@ -37,11 +37,11 @@ export default function ThoughtCard({
               thought.{String(number).padStart(3, "0")}
             </span>
             {image_url && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium text-accent bg-accent/10 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors">
+              <span className="text-accent/70" title="Incluye imagen">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -53,7 +53,6 @@ export default function ThoughtCard({
                   <circle cx="9" cy="9" r="2" />
                   <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
                 </svg>
-                <span>ver imagen</span>
               </span>
             )}
           </div>
