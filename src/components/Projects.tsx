@@ -42,6 +42,13 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "blame-the-intern",
+      description:
+        "Orchestrator for running multiple Claude Code agents in parallel. Each agent works on isolated branches across multiple repositories using git worktrees. Includes CLI and desktop app built with Tauri.",
+      tech: "Tech: TypeScript, Node.js, Tauri, Claude Code SDK",
+      highlighted: true,
+    },
+    {
       title: "lahonditadelabuelo.com",
       description:
         "AI-Optimized SEO Case Study: Built a restaurant website optimized for LLM discovery. Result: 75 milanesas ordered via Microsoft Copilot. Demonstrated how AI-first optimization differs from traditional SEO.",
