@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getThoughts } from "@/lib/supabase/queries";
 import ThoughtCard from "@/components/ThoughtCard";
+import FadeInOnScroll from "@/components/FadeInOnScroll";
 
 export const metadata: Metadata = {
   title: "Thoughts | Diego Moraes",
@@ -44,11 +45,12 @@ export default async function ThoughtsPage() {
         ) : (
           <div className="flex flex-col gap-4">
             {thoughts.map((thought, index) => (
-              <ThoughtCard
-                key={thought.id}
-                {...thought}
-                number={thoughts.length - index}
-              />
+              <FadeInOnScroll key={thought.id} delay={index * 100}>
+                <ThoughtCard
+                  {...thought}
+                  number={thoughts.length - index}
+                />
+              </FadeInOnScroll>
             ))}
           </div>
         )}
