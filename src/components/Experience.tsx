@@ -56,7 +56,7 @@ export default function Experience() {
       status: "Current",
       roles: [
         {
-          title: "Senior Software Engineer (2021 - Present)",
+          title: "Software Development Analyst (May 2021 - Present)",
           description:
             "Currently part of the listing management team where sellers manage their publications across all countries. Previously worked on the search engine team, handling one of the world's most heavily used search bars with over 5 million queries per minute. Tech stack includes React, Node, Java, Golang, and GraphQL with clean architecture patterns. Experience working with high-traffic systems across auto-scaling groups, using monitoring tools like Kibana, New Relic, and Datadog.",
         },
@@ -66,7 +66,7 @@ export default function Experience() {
       company: "Arkano Software",
       roles: [
         {
-          title: "Semi Senior Developer",
+          title: "Semi Senior Developer (Oct 2020 - May 2021)",
           description:
             "Worked on multiple projects across different industries: developed and maintained an adverse effects reporting system for a pharmaceutical company, built SharePoint solutions, and performed data analysis for a mining company. Stack: C#, SQL Server, ReactJS, Azure.",
         },
@@ -76,7 +76,7 @@ export default function Experience() {
       company: "Prometeo Open Banking",
       roles: [
         {
-          title: "Developer",
+          title: "Developer (Jan 2020 - Oct 2020)",
           description:
             "My first experience in the startup world. Implemented Jenkins pipelines to integrate CI into the project, built the first version of the billing and plans system, and handled BAU tasks. Developed internal tools and dashboard features for API consumption tracking.",
         },
@@ -86,7 +86,7 @@ export default function Experience() {
       company: "TCS",
       roles: [
         {
-          title: "IT Trainee",
+          title: "IT Trainee (Jun 2019 - Jan 2020)",
           description:
             "IT Trainee position focused on learning enterprise-level software development practices and methodologies.",
         },
