@@ -56,7 +56,7 @@ export default function Experience() {
       status: "Current",
       roles: [
         {
-          title: "Software Development Analyst (May 2021 - Present)",
+          title: "Senior Software Engineer (2021 - Present)",
           description:
             "Currently part of the listing management team where sellers manage their publications across all countries. Previously worked on the search engine team, handling one of the world's most heavily used search bars with over 5 million queries per minute. Tech stack includes React, Node, Java, Golang, and GraphQL with clean architecture patterns. Experience working with high-traffic systems across auto-scaling groups, using monitoring tools like Kibana, New Relic, and Datadog.",
         },
