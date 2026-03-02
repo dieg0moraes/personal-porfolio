@@ -90,7 +90,7 @@ export default function Hero() {
         }`}
         style={{ transitionDelay: "600ms" }}
       >
-        también escribo en{" "}
+        I also write at{" "}
         <Link href="/notes" className="text-text-muted hover:text-accent transition-colors">
           ./notes →
         </Link>
