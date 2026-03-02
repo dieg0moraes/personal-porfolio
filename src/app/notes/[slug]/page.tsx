@@ -7,19 +7,19 @@ import { enUS } from "date-fns/locale";
 import { getThoughtBySlug, getThoughts } from "@/lib/supabase/queries";
 import ThoughtTags from "@/components/ThoughtTags";
 
-interface ThoughtPageProps {
+interface NotePageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({
   params,
-}: ThoughtPageProps): Promise<Metadata> {
+}: NotePageProps): Promise<Metadata> {
   const { slug } = await params;
   const thought = await getThoughtBySlug(slug);
 
   if (!thought) {
     return {
-      title: "Thought not found | Diego Moraes",
+      title: "Note not found | Diego Moraes",
     };
   }
 
@@ -47,7 +47,7 @@ export async function generateStaticParams() {
 
 export const revalidate = 60;
 
-export default async function ThoughtPage({ params }: ThoughtPageProps) {
+export default async function NotePage({ params }: NotePageProps) {
   const { slug } = await params;
   const thought = await getThoughtBySlug(slug);
 
@@ -64,14 +64,14 @@ export default async function ThoughtPage({ params }: ThoughtPageProps) {
       <article className="bg-background py-16 md:py-[120px] px-6 md:px-20 flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <Link
-            href="/thoughts"
+            href="/notes"
             className="text-text-muted-dark text-sm hover:text-accent transition-colors w-fit"
           >
-            ← Back to Thoughts
+            ← Back to ./notes
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
-            $ cat thought/{thought.slug}<span className="typing-cursor" />
+            $ cat notes/{thought.slug}<span className="typing-cursor" />
           </span>
         </div>
 

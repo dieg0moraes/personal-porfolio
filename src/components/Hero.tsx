@@ -82,13 +82,19 @@ export default function Hero() {
         >
           LinkedIn →
         </a>
-        <Link
-          href="/thoughts"
-          className="btn-cta-secondary px-7 py-3.5 border-2 border-border text-foreground font-bold text-sm md:text-base hover:border-text-muted text-center"
-        >
-          Thoughts →
-        </Link>
       </div>
+
+      <p
+        className={`text-text-muted-dark text-sm md:text-base transition-all duration-700 ease-out ${
+          typingComplete ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+        style={{ transitionDelay: "600ms" }}
+      >
+        también escribo en{" "}
+        <Link href="/notes" className="text-text-muted hover:text-accent transition-colors">
+          ./notes →
+        </Link>
+      </p>
     </section>
   );
 }

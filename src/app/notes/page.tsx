@@ -4,13 +4,13 @@ import { getThoughts } from "@/lib/supabase/queries";
 import ThoughtCard from "@/components/ThoughtCard";
 
 export const metadata: Metadata = {
-  title: "Thoughts | Diego Moraes",
+  title: "Notes | Diego Moraes",
   description: "Micro-posts, ideas and reflections on technology and software development.",
 };
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
-export default async function ThoughtsPage() {
+export default async function NotesPage() {
   const thoughts = await getThoughts();
 
   return (
@@ -25,11 +25,11 @@ export default async function ThoughtsPage() {
           </Link>
 
           <span className="text-accent font-bold text-sm md:text-base">
-            $ cat thoughts.log<span className="typing-cursor" />
+            $ cat notes.log<span className="typing-cursor" />
           </span>
 
           <h1 className="text-foreground font-bold text-3xl md:text-5xl lg:text-6xl leading-none tracking-[-1px]">
-            Thoughts
+            ./notes
           </h1>
 
           <p className="text-text-muted text-base md:text-lg max-w-2xl">
@@ -39,7 +39,7 @@ export default async function ThoughtsPage() {
 
         {thoughts.length === 0 ? (
           <div className="border border-border p-8 text-center">
-            <p className="text-text-muted">No thoughts yet.</p>
+            <p className="text-text-muted">No notes yet.</p>
           </div>
         ) : (
           <div className="flex flex-col gap-4">

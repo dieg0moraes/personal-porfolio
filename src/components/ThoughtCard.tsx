@@ -27,11 +27,11 @@ export default function ThoughtCard({
     content.length > 150 ? content.substring(0, 150) + "..." : content;
 
   return (
-    <Link href={`/thoughts/${slug}`}>
+    <Link href={`/notes/${slug}`}>
       <article className="p-6 md:p-8 flex flex-col gap-4 w-full border border-border hover:border-accent/50 transition-colors">
         <div className="flex items-center justify-between gap-2">
           <span className="text-accent font-mono text-sm">
-            thought.{String(number).padStart(3, "0")}
+            note.{String(number).padStart(3, "0")}
           </span>
           <span className="text-text-muted-dark text-xs md:text-sm shrink-0">
             {formattedDate}
